@@ -1,0 +1,75 @@
+{
+  "policy": {
+    "checkIntervalMinutes": 15,
+    "requestTimeoutMs": 10000,
+    "attemptsPerProbe": 3,
+    "retryBackoffMs": 5000,
+    "followRedirects": false,
+    "failuresBeforeDown": 3,
+    "successesBeforeUp": 2,
+    "staleAfterMinutes": 45,
+    "historyWindowDays": 90,
+    "dayBoundary": "UTC"
+  },
+  "services": [
+    {
+      "id": "web",
+      "label": "Web app",
+      "sublabel": "The NaviPaw website and app at www.navipaw.com",
+      "probe": {
+        "method": "GET",
+        "url": "https://www.navipaw.com/api/health",
+        "sendCookies": false,
+        "sendAuthorization": false,
+        "secretHeaders": [],
+        "expect": {
+          "status": [
+            200
+          ],
+          "contentTypeIncludes": "application/json",
+          "jsonBodyMatches": {
+            "status": "ok"
+          },
+          "additionalBodyFieldsAllowed": true
+        }
+      }
+    },
+    {
+      "id": "database",
+      "label": "Database API",
+      "sublabel": "Saving and loading your NaviPaw data",
+      "probe": {
+        "method": "GET",
+        "url": "${PROBE_DATABASE_URL}",
+        "sendCookies": false,
+        "sendAuthorization": true,
+        "secretHeaders": [
+          {
+            "header": "apikey",
+            "secret": "SUPABASE_ANON_KEY",
+            "valuePrefix": ""
+          },
+          {
+            "header": "Authorization",
+            "secret": "SUPABASE_ANON_KEY",
+            "valuePrefix": "Bearer "
+          }
+        ],
+        "expect": {
+          "status": [
+            200
+          ],
+          "contentTypeIncludes": "application/json"
+        }
+      }
+    }
+  ],
+  "forbiddenSecretPatterns": [
+    "SERVICE_ROLE",
+    "SECRET_KEY",
+    "WEBHOOK_SECRET",
+    "AUTH_TOKEN",
+    "API_KEY",
+    "_SECRET"
+  ]
+}

@@ -1,0 +1,1133 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-25T14:15:00.000Z",
+  "lastCheckedAt": "2026-07-25T14:15:00.000Z",
+  "overall": "operational",
+  "services": [
+    {
+      "id": "web",
+      "label": "Web app",
+      "sublabel": "The NaviPaw website and app at www.navipaw.com",
+      "state": "operational",
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 37,
+      "days": [
+        {
+          "date": "2026-04-27",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-04-28",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-04-29",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-04-30",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-01",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-02",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-03",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-04",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-05",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-06",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-07",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-08",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-09",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-10",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-11",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-12",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-13",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-14",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-15",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-16",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-17",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-18",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-19",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-20",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-21",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-22",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-23",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-24",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-25",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-26",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-27",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-28",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-29",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-30",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-31",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-01",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-02",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-03",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-04",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-05",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-06",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-07",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-08",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-09",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-10",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-11",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-12",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-13",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-14",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-15",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-16",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-17",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-18",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-19",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-20",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-21",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-22",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-23",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-24",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-25",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-26",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-27",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-28",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-29",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-30",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-01",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-02",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-03",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-04",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-05",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-06",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-07",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-08",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-09",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-10",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-11",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-12",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-13",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-14",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-15",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-16",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-17",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-18",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-19",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-20",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-21",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-22",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-23",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-24",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-25",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        }
+      ]
+    },
+    {
+      "id": "database",
+      "label": "Database API",
+      "sublabel": "Saving and loading your NaviPaw data",
+      "state": "operational",
+      "consecutiveFailures": 0,
+      "consecutiveSuccesses": 37,
+      "days": [
+        {
+          "date": "2026-04-27",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-04-28",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-04-29",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-04-30",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-01",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-02",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-03",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-04",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-05",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-06",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-07",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-08",
+          "state": "unknown",
+          "recordedProbes": 0,
+          "successfulProbes": 0
+        },
+        {
+          "date": "2026-05-09",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-10",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-11",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-12",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-13",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-14",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-15",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-16",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-17",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-18",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-19",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-20",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-21",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-22",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-23",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-24",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-25",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-26",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-27",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-28",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-29",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-30",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-05-31",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-01",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-02",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-03",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-04",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-05",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-06",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-07",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-08",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-09",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-10",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-11",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-12",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-13",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-14",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-15",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-16",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-17",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-18",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-19",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-20",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-21",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-22",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-23",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-24",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-25",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-26",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-27",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-28",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-29",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-06-30",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-01",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-02",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-03",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-04",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-05",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-06",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-07",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-08",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-09",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-10",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-11",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-12",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-13",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-14",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-15",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-16",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-17",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-18",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-19",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-20",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-21",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-22",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-23",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-24",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        },
+        {
+          "date": "2026-07-25",
+          "state": "operational",
+          "recordedProbes": 96,
+          "successfulProbes": 96
+        }
+      ]
+    }
+  ],
+  "incidents": [
+    {
+      "id": "2026-07-18-database",
+      "title": "Elevated errors reaching Database API",
+      "status": "resolved",
+      "affects": [
+        "database"
+      ],
+      "startedAt": "2026-07-18T14:11:00Z",
+      "resolvedAt": "2026-07-18T14:42:00Z",
+      "updates": [
+        {
+          "at": "2026-07-18T14:42:00Z",
+          "status": "Resolved",
+          "body": "Database API responses recovered. Customers who could not load schedules or save changes should retry."
+        },
+        {
+          "at": "2026-07-18T14:11:00Z",
+          "status": "Investigating",
+          "body": "We were investigating failed health checks against the Database API."
+        }
+      ]
+    }
+  ],
+  "previewNowOffsetMinutes": 180
+}

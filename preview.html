@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NaviPaw Status — fixture review</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* Review chrome only. None of this ships on the status page itself. */
+    body { background: #F3EEE7; }
+    .review { max-width: 46rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .review > h1 { font-family: Georgia, serif; color: var(--charcoal-800); margin: 0 0 .35rem; }
+    .review > p.lede { color: var(--charcoal-400); font-size: .92rem; margin: 0 0 2rem; max-width: 60ch; }
+    .case { background: var(--warm-50); border: 1px solid var(--warm-200); border-radius: .6rem;
+            margin-bottom: 2rem; overflow: hidden; }
+    .case > .hdr { background: #fff; border-bottom: 1px solid var(--warm-200); padding: .8rem 1rem; }
+    .case > .hdr h2 { margin: 0; font-size: .95rem; color: var(--charcoal-800); font-family: inherit; }
+    .case > .hdr p { margin: .3rem 0 0; font-size: .82rem; color: var(--charcoal-400); }
+    .case > .hdr code { background: var(--warm-100); padding: .1rem .3rem; border-radius: 3px;
+                        font-size: .95em; word-break: break-word; }
+    .case .page { padding-top: 1.25rem; }
+    .expect { font-size: .8rem; color: var(--sage-600); font-weight: 600; margin-top: .4rem; }
+  </style>
+</head>
+<body>
+  <div class="review">
+    <h1>Fixture review — status.navipaw.com</h1>
+    <p class="lede">Every state, rendered by the real <code>assets/app.js</code> against a fixed
+      clock. Fixtures are deterministic, so this page looks the same in a year.</p>
+    <div id="cases"></div>
+  </div>
+
+  <template id="tpl">
+    <main class="page">
+      <header>
+        <div class="brand">
+          <img src="assets/img/navipaw-icon.png" alt="" width="36" height="36" />
+          <div>
+            <div class="brand-title">NaviPaw Status</div>
+            <div class="brand-sub">Independent of navipaw.com</div>
+          </div>
+        </div>
+        <span class="header-meta" data-checked></span>
+      </header>
+      <div class="banner" data-banner data-state="unknown">Status unknown</div>
+      <div class="section-head">
+        <span>Uptime over the past 90 days</span>
+        <span>Checks every 15 minutes</span>
+      </div>
+      <section class="services" data-services aria-label="Services"></section>
+      <div class="legend" aria-label="Legend">
+        <span><i class="swatch"></i> Operational</span>
+        <span><i class="swatch degraded"></i> Degraded</span>
+        <span><i class="swatch down"></i> Outage</span>
+        <span><i class="swatch unknown"></i> No data</span>
+      </div>
+      <section class="incidents" aria-label="Past incidents">
+        <h2>Past Incidents</h2>
+        <div data-incidents></div>
+      </section>
+      <p class="freshness" data-freshness></p>
+    </main>
+  </template>
+
+  <script src="assets/app.js"></script>
+  <script>
+    var CASES = [
+      { file: "operational", title: "Operational",
+        note: "Every service healthy. One historical outage and one degraded day so the 90-day bar is not a flat wall.",
+        expect: "Expect: green banner “All Systems Operational”, both services Operational." },
+      { file: "partial-outage", title: "Partial outage",
+        note: "One service down, one healthy.",
+        expect: "Expect: amber banner “Partial outage”, Database API in red, Web app still Operational." },
+      { file: "major-outage", title: "Major outage",
+        note: "Every service down. The page is still served.",
+        expect: "Expect: red banner “Major outage”, both services Down." },
+      { file: "unknown", title: "Unknown — stale data",
+        note: "The file claims <code>overall: \"operational\"</code> but was published 180 minutes ago, past the 45-minute staleness limit.",
+        expect: "Expect: grey banner “Status unknown” — the renderer must override the file's own claim." },
+      { file: "empty", title: "Empty history",
+        note: "A brand-new page that has never probed anything.",
+        expect: "Expect: grey “Status unknown”, an all-grey bar, “no data yet”, and “No incidents reported” — never an outage." },
+    ];
+
+    var host = document.getElementById("cases");
+    var tpl = document.getElementById("tpl");
+
+    CASES.forEach(function (c) {
+      var wrap = document.createElement("section");
+      wrap.className = "case";
+      var hdr = document.createElement("div");
+      hdr.className = "hdr";
+      hdr.innerHTML = "<h2>" + c.title + "</h2><p>" + c.note +
+        "</p><p class='expect'>" + c.expect + "</p>";
+      wrap.appendChild(hdr);
+      var root = tpl.content.cloneNode(true).querySelector("main");
+      wrap.appendChild(root);
+      host.appendChild(wrap);
+
+      fetch("fixtures/" + c.file + ".json", { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(function (snap) {
+          // Clock relative to the fixture's own publish time, so "fresh"
+          // fixtures never age into the stale branch.
+          var now = Date.parse(snap.lastCheckedAt) + (snap.previewNowOffsetMinutes || 0) * 60000;
+          NaviPawStatus.render(root, snap, now);
+        })
+        .catch(function (e) { NaviPawStatus.fail(root, "fixture failed to load: " + e.message); });
+    });
+  </script>
+</body>
+</html>

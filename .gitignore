@@ -1,0 +1,16 @@
+# Measurements live on the orphan `data` branch, never on main.
+#
+# The prober rewrites history.json every 15 minutes — 2,880 commits a month. On
+# main that would bury the actual source history under machine noise and grow
+# the clone forever. On its own branch it can be squashed or reset without
+# touching a single line of site source.
+data/history.json
+
+# Generated at publish time by scripts/build-data.mjs from history + incidents.
+# Committing a build output would let the published page and its inputs drift.
+data/status.json
+
+# Local review server / editor noise
+_site/
+.DS_Store
+node_modules/

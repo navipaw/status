@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NaviPaw Status</title>
+  <meta name="description" content="Status for NaviPaw." />
+  <meta name="theme-color" content="#FFFDF9" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/img/navipaw-icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/navipaw-icon.png" />
+  <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/quicksand-latin.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand">
+        <img src="assets/img/navipaw-icon.png" alt="" width="36" height="36" />
+        <div>
+          <div class="brand-title">NaviPaw Status</div>
+          <div class="brand-sub">Independent of navipaw.com</div>
+        </div>
+      </div>
+      <span class="header-meta" data-checked></span>
+    </header>
+
+    <div class="banner" data-banner data-state="unknown" role="status" aria-live="polite">Status unknown</div>
+
+    <div class="section-head">
+      <span>Uptime over the past 90 days</span>
+      <span>Checks every 15 minutes</span>
+    </div>
+
+    <section class="services" data-services aria-label="Services"></section>
+
+    <div class="legend" aria-label="Legend">
+      <span><i class="swatch"></i> Operational</span>
+      <span><i class="swatch degraded"></i> Degraded</span>
+      <span><i class="swatch down"></i> Outage</span>
+      <span><i class="swatch unknown"></i> No data</span>
+    </div>
+
+    <section class="incidents" aria-label="Past incidents">
+      <h2>Past Incidents</h2>
+      <div data-incidents></div>
+    </section>
+
+    <p class="freshness" data-freshness>Loading…</p>
+  </main>
+
+  <script src="assets/app.js"></script>
+  <script>NaviPawStatus.boot(document.querySelector("main"), "data/status.json");</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+name: Post incident update
+
+# Posts an incident update from the Actions tab. Editing incidents/*.md by hand
+# produces the same file.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Incident id — reuse the same slug to add an update to an existing incident (e.g. 2026-07-25-database)"
+        required: true
+        type: string
+      title:
+        description: "Title — what the customer cannot do, in plain words"
+        required: true
+        type: string
+      status:
+        description: "Status"
+        required: true
+        default: investigating
+        type: choice
+        options: [investigating, identified, monitoring, resolved]
+      message:
+        description: "Update — what is affected, what still works, when you will update next. No stack traces, hostnames, or customer details: this is public."
+        required: true
+        type: string
+      affects_web:
+        description: "Affects Web app"
+        required: false
+        default: false
+        type: boolean
+      affects_database:
+        description: "Affects Database API"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: probe-and-publish   # shared with probe.yml: never write history twice at once
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Write or append the incident file
+        env:
+          SLUG: ${{ inputs.slug }}
+          TITLE: ${{ inputs.title }}
+          STATUS: ${{ inputs.status }}
+          MESSAGE: ${{ inputs.message }}
+          AFFECTS_WEB: ${{ inputs.affects_web }}
+          AFFECTS_DB: ${{ inputs.affects_database }}
+        run: node scripts/post-incident.mjs
+
+      # Runs before publishing, so a leaked stack trace fails the job rather
+      # than reaching the public page and needing a takedown.
+      - name: Check incident text is publishable
+        run: node scripts/check-sanitisation.mjs
+
+      # The incident text is human-authored source, so it belongs on main. The
+      # measurements it is published alongside stay on the data branch.
+      - name: Commit incident
+        run: |
+          git config user.name  "navipaw-status[bot]"
+          git config user.email "status@navipaw.com"
+          git add incidents
+          git commit -m "incident(${{ inputs.slug }}): ${{ inputs.status }}"
+          for i in 1 2 3; do
+            git push && break || { git pull --rebase --autostash && sleep 3; }
+          done
+
+      - name: Restore recorded history
+        run: bash scripts/data-branch.sh restore
+
+      - name: Build published snapshot
+        run: node scripts/build-data.mjs
+
+      - uses: actions/configure-pages@v5
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html preview.html CNAME _site/
+          cp -r assets data fixtures _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: post
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

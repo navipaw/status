@@ -1,0 +1,94 @@
+name: Probe and publish
+
+# Every 15 minutes, per probe-contract.json policy.checkIntervalMinutes.
+# GitHub's cron is best-effort and can run late under load — that is exactly why
+# the page derives staleness from lastCheckedAt rather than assuming the cron
+# fired. A late run shows as Unknown, not as a false green.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: # manual re-check, e.g. to confirm a recovery
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/**"
+      - "data/**"
+      - "incidents/**"
+      - "probe-contract.json"
+      - ".github/workflows/probe.yml"
+
+# Never let two runs interleave: both would read the same history, and the
+# second commit would silently discard the first run's measurements.
+concurrency:
+  group: probe-and-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # commit the updated history
+  pages: write      # publish
+  id-token: write   # required by deploy-pages
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Measurements live on an orphan `data` branch. At 2,880 commits a month
+      # they would otherwise bury main's real history and grow every clone
+      # forever; on their own branch they can be squashed or reset without
+      # touching a line of site source.
+      - name: Restore recorded history
+        run: bash scripts/data-branch.sh restore
+
+      # Supplied rather than committed: the key is a credential, and the URL
+      # would name infrastructure this public repository has no reason to.
+      - name: Probe services
+        env:
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          PROBE_DATABASE_URL: ${{ secrets.PROBE_DATABASE_URL }}
+        run: node scripts/probe.mjs
+
+      - name: Save recorded history
+        run: bash scripts/data-branch.sh save
+
+      - name: Check incident text is publishable
+        run: node scripts/check-sanitisation.mjs
+
+      # status.json is a build output, never committed: generating it here means
+      # the published page and its inputs cannot drift apart.
+      - name: Build published snapshot
+        run: node scripts/build-data.mjs
+
+      - uses: actions/configure-pages@v5
+
+      # Everything the page needs, and nothing else. incidents/ and scripts/ are
+      # deliberately excluded: the markdown sources and the prober have no
+      # business being served from the status domain.
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html preview.html CNAME _site/
+          cp -r assets data fixtures _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: probe
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
