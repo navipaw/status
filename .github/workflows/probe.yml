@@ -8,15 +8,13 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch: # manual re-check, e.g. to confirm a recovery
+  # Every push to main, with no path filter. The filter that was here omitted
+  # scripts/ — the publishing logic itself — so changes to how the page is built
+  # landed without ever deploying, silently. A wasted run costs nothing on a
+  # public repository; a change that quietly fails to ship costs trust in the
+  # page.
   push:
     branches: [main]
-    paths:
-      - "index.html"
-      - "assets/**"
-      - "data/**"
-      - "incidents/**"
-      - "probe-contract.json"
-      - ".github/workflows/probe.yml"
 
 # Never let two runs interleave: both would read the same history, and the
 # second commit would silently discard the first run's measurements.
