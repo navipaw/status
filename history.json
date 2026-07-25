@@ -3,12 +3,12 @@
   "services": {
     "web": {
       "consecutiveFailures": 0,
-      "consecutiveSuccesses": 3,
+      "consecutiveSuccesses": 4,
       "state": "operational",
       "days": {
         "2026-07-25": {
-          "recordedProbes": 3,
-          "successfulProbes": 3,
+          "recordedProbes": 4,
+          "successfulProbes": 4,
           "maxConsecutiveFailures": 0,
           "runningFailures": 0
         }
@@ -16,8 +16,8 @@
     },
     "database": {
       "consecutiveFailures": 0,
-      "consecutiveSuccesses": 2,
-      "state": "operational",
+      "consecutiveSuccesses": 0,
+      "state": "unknown",
       "days": {
         "2026-07-25": {
           "recordedProbes": 2,
