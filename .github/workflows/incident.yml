@@ -71,11 +71,19 @@ jobs:
       # The incident text is human-authored source, so it belongs on main. The
       # measurements it is published alongside stay on the data branch.
       - name: Commit incident
+        # Inputs go through env, never interpolated into the script body.
+        # `${{ inputs.x }}` is substituted before the shell parses the line, so a
+        # slug containing a quote could run arbitrary commands here — with both
+        # secrets in scope. Only write-access users can dispatch this, but that
+        # is an access control, not a reason to leave the hole open.
+        env:
+          SLUG: ${{ inputs.slug }}
+          STATUS: ${{ inputs.status }}
         run: |
           git config user.name  "navipaw-status[bot]"
           git config user.email "status@navipaw.com"
           git add incidents
-          git commit -m "incident(${{ inputs.slug }}): ${{ inputs.status }}"
+          git commit -m "incident(${SLUG}): ${STATUS}"
           for i in 1 2 3; do
             git push && break || { git pull --rebase --autostash && sleep 3; }
           done
