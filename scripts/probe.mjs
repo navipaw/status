@@ -197,7 +197,12 @@ async function main() {
        service look healthy. */
     if (rec.consecutiveFailures >= P.failuresBeforeDown) rec.state = "down";
     else if (rec.consecutiveSuccesses >= P.successesBeforeUp) rec.state = "operational";
-    else if (rec.state === "unknown" && result.ok) rec.state = "operational";
+    /* No shortcut out of unknown. A first-ever check that passes is one
+       measurement, and one measurement is not enough to tell a customer a
+       service is healthy — the same reason recovery from down needs two. A
+       fresh page, or one whose history was lost, therefore reads unknown for a
+       cycle rather than going green on evidence it would not accept anywhere
+       else. */
 
     const day = rec.days[today] || {
       recordedProbes: 0, successfulProbes: 0,
