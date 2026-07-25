@@ -48,7 +48,7 @@ jobs:
       # would name infrastructure this public repository has no reason to.
       - name: Probe services
         env:
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          PROBE_DATABASE_KEY: ${{ secrets.PROBE_DATABASE_KEY }}
           PROBE_DATABASE_URL: ${{ secrets.PROBE_DATABASE_URL }}
         run: node scripts/probe.mjs
 

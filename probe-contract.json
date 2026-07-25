@@ -46,12 +46,12 @@
         "secretHeaders": [
           {
             "header": "apikey",
-            "secret": "SUPABASE_ANON_KEY",
+            "secret": "PROBE_DATABASE_KEY",
             "valuePrefix": ""
           },
           {
             "header": "Authorization",
-            "secret": "SUPABASE_ANON_KEY",
+            "secret": "PROBE_DATABASE_KEY",
             "valuePrefix": "Bearer "
           }
         ],

@@ -29,7 +29,7 @@ const RULES = [
   { name: "key material (sb_ prefix)", re: /sb_(publishable|secret)_[A-Za-z0-9_-]+/ },
   { name: "key material (sk/pk/rk)", re: /\b(sk|pk|rk)_(test|live)_[A-Za-z0-9]{10,}/ },
   { name: "stack trace", re: /^\s*at\s+\S+\s+\(.*:\d+:\d+\)/m },
-  { name: "postgres error code", re: /\bSQLSTATE\b|\b5\d{4}\b:\s/ },
+  { name: "database error code", re: /\bSQLSTATE\b|\b5\d{4}\b:\s/ },
   { name: "internal hostname", re: /\b[a-z0-9-]+\.(internal|local|cluster\.local)\b/i },
   { name: "private IP address", re: /\b(10\.\d{1,3}|192\.168|172\.(1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}\b/ },
   { name: "backend project ref in prose", re: /\b[a-z]{20}\.[a-z]+\.co\b/ },
