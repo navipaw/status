@@ -96,12 +96,17 @@ async function probeService(service) {
   }
   const probe = { ...service.probe, url: resolveUrl(service.probe.url) };
 
+  let last;
   for (let i = 0; i < P.attemptsPerProbe; i++) {
-    const r = await attempt(probe);
-    if (r.ok) return { ok: true, status: r.status, attempts: i + 1 };
+    last = await attempt(probe);
+    if (last.ok) return { ok: true, status: last.status, attempts: i + 1 };
     if (i < P.attemptsPerProbe - 1) await sleep(P.retryBackoffMs);
   }
-  return { ok: false, attempts: P.attemptsPerProbe };
+  /* Carry the last attempt's status and failure class out to the caller. A bare
+     "FAIL" cannot distinguish a rejected credential from a mistyped URL, which
+     is the first question asked whenever this fires. Status codes and the
+     failure class only — never a body, per the note at the top of this file. */
+  return { ok: false, status: last.status, reason: last.reason, attempts: P.attemptsPerProbe };
 }
 
 function emptyHistory() {
@@ -220,6 +225,7 @@ async function main() {
     prune(rec.days);
 
     console.log(`[${service.id}] ${result.ok ? "ok" : "FAIL"} ` +
+      (result.ok ? "" : `status=${result.status} reason=${result.reason} `) +
       `attempts=${result.attempts} state=${rec.state} ` +
       `consecFail=${rec.consecutiveFailures} consecOk=${rec.consecutiveSuccesses}`);
   }
