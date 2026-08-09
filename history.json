@@ -3,7 +3,7 @@
   "services": {
     "web": {
       "consecutiveFailures": 0,
-      "consecutiveSuccesses": 221,
+      "consecutiveSuccesses": 222,
       "state": "operational",
       "days": {
         "2026-07-25": {
@@ -97,15 +97,15 @@
           "runningFailures": 0
         },
         "2026-08-09": {
-          "recordedProbes": 10,
-          "successfulProbes": 10,
+          "recordedProbes": 11,
+          "successfulProbes": 11,
           "maxConsecutiveFailures": 0,
           "runningFailures": 0
         }
       }
     },
     "database": {
-      "consecutiveFailures": 8,
+      "consecutiveFailures": 9,
       "consecutiveSuccesses": 0,
       "state": "down",
       "days": {
@@ -200,13 +200,13 @@
           "runningFailures": 0
         },
         "2026-08-09": {
-          "recordedProbes": 10,
+          "recordedProbes": 11,
           "successfulProbes": 2,
-          "maxConsecutiveFailures": 8,
-          "runningFailures": 8
+          "maxConsecutiveFailures": 9,
+          "runningFailures": 9
         }
       }
     }
   },
-  "lastCheckedAt": "2026-08-09T11:12:51.503Z"
+  "lastCheckedAt": "2026-08-09T11:47:11.427Z"
 }
