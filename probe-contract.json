@@ -15,10 +15,10 @@
     {
       "id": "web",
       "label": "Web app",
-      "sublabel": "The NaviPaw website and app at www.navipaw.com",
+      "sublabel": "The NaviPaw app at app.navipaw.com",
       "probe": {
         "method": "GET",
-        "url": "https://www.navipaw.com/api/health",
+        "url": "https://app.navipaw.com/api/health",
         "sendCookies": false,
         "sendAuthorization": false,
         "secretHeaders": [],

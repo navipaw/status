@@ -7,7 +7,7 @@
     {
       "id": "web",
       "label": "Web app",
-      "sublabel": "The NaviPaw website and app at www.navipaw.com",
+      "sublabel": "The NaviPaw app at app.navipaw.com",
       "state": "operational",
       "consecutiveFailures": 0,
       "consecutiveSuccesses": 37,

@@ -20,7 +20,7 @@ const BASE = Date.parse("2026-07-25T14:15:00Z"); // fixed clock for all fixtures
 const PROBES_PER_DAY = 96; // 15-minute interval
 
 const SERVICES = [
-  { id: "web", label: "Web app", sublabel: "The NaviPaw website and app at www.navipaw.com" },
+  { id: "web", label: "Web app", sublabel: "The NaviPaw app at app.navipaw.com" },
   { id: "database", label: "Database API", sublabel: "Saving and loading your NaviPaw data" },
 ];
 
