@@ -4,8 +4,21 @@
  * several consecutive failed cycles to report down.
  *
  * Response bodies are never logged. This repository is public, and anything
- * echoed into a run log is a permanent public artefact — only status codes are
- * recorded.
+ * echoed into a run log is a permanent public artefact — only status codes and
+ * the machine error code below are recorded.
+ *
+ * The one exception is `errorCode()`: a failed probe also records the API's
+ * error *code*, never its message. A code is a fixed identifier from a closed
+ * set (`PGRST205`, `42501`, …) and names no table, column, host, or row; the
+ * `message` beside it routinely names all four, which is why it is dropped. The
+ * value is passed through an allowlist regex rather than trusted, because a
+ * response body is attacker-controlled input and this log line is public and
+ * permanent.
+ *
+ * This exists because a bare `404` is not a diagnosis. #2176 sat at
+ * `status=404` for nine days and needed production database access to explain;
+ * `pgcode=PGRST205` would have said "the probed object does not exist" on the
+ * first run.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -40,6 +53,25 @@ function buildHeaders(probe) {
 
 /* One attempt. Returns {ok, status} and never throws for a network error —
    an unreachable host is a legitimate probe result, not a crash. */
+/* A PostgREST/Postgres error identifier, or undefined. Deliberately strict:
+   `PGRST` + 3 digits, or a 5-character SQLSTATE. Anything else — including a
+   long "code", a message that arrived in the wrong field, or a crafted body —
+   is dropped rather than printed into a public run log. */
+const ERROR_CODE = /^(?:PGRST\d{3}|[0-9A-Z]{5})$/;
+
+async function errorCode(res) {
+  try {
+    if (!(res.headers.get("content-type") || "").includes("application/json")) return undefined;
+    const body = await res.json();
+    const code = body?.code;
+    return typeof code === "string" && ERROR_CODE.test(code) ? code : undefined;
+  } catch {
+    // A body that is absent, truncated, or not JSON is not itself a failure to
+    // report — the status code already said the probe failed.
+    return undefined;
+  }
+}
+
 async function attempt(probe) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), P.requestTimeoutMs);
@@ -52,7 +84,7 @@ async function attempt(probe) {
     });
 
     if (!probe.expect.status.includes(res.status)) {
-      return { ok: false, status: res.status, reason: "status" };
+      return { ok: false, status: res.status, reason: "status", code: await errorCode(res) };
     }
     const ctype = res.headers.get("content-type") || "";
     if (!ctype.includes(probe.expect.contentTypeIncludes)) {
@@ -106,7 +138,7 @@ async function probeService(service) {
      "FAIL" cannot distinguish a rejected credential from a mistyped URL, which
      is the first question asked whenever this fires. Status codes and the
      failure class only — never a body, per the note at the top of this file. */
-  return { ok: false, status: last.status, reason: last.reason, attempts: P.attemptsPerProbe };
+  return { ok: false, status: last.status, reason: last.reason, code: last.code, attempts: P.attemptsPerProbe };
 }
 
 function emptyHistory() {
@@ -226,6 +258,7 @@ async function main() {
 
     console.log(`[${service.id}] ${result.ok ? "ok" : "FAIL"} ` +
       (result.ok ? "" : `status=${result.status} reason=${result.reason} `) +
+      (result.code ? `pgcode=${result.code} ` : "") +
       `attempts=${result.attempts} state=${rec.state} ` +
       `consecFail=${rec.consecutiveFailures} consecOk=${rec.consecutiveSuccesses}`);
   }
