@@ -106,18 +106,6 @@ async function attempt(probe) {
   }
 }
 
-/* A probe URL may be written as ${NAME} so it can be supplied from the
-   environment instead of committed. This repository is public and a URL names
-   the infrastructure behind it, so anything more specific than a public
-   marketing hostname is kept out of the tree. */
-function resolveUrl(url) {
-  return url.replace(/\$\{([A-Z0-9_]+)\}/g, (_, name) => {
-    const v = process.env[name];
-    if (!v) throw new Error(`missing ${name}`);
-    return v;
-  });
-}
-
 async function probeService(service) {
   /* Checked before the first request, not inside it. attempt() deliberately
      swallows every throw so a network error reads as a probe result — which
@@ -126,7 +114,17 @@ async function probeService(service) {
   for (const h of service.probe.secretHeaders || []) {
     if (!process.env[h.secret]) throw new Error(`missing secret ${h.secret}`);
   }
-  const probe = { ...service.probe, url: resolveUrl(service.probe.url) };
+  /* Every probe URL is a committed literal, and this is what keeps it that
+     way. A URL supplied from the environment is invisible to a diff: the
+     database probe spent nine days pointed at an object that no longer
+     existed, and neither repository could show what it was asking for. The
+     values are public by construction — a hostname and a path — and the
+     credential beside them is still a secret. */
+  const { url } = service.probe;
+  if (/\$\{[A-Z0-9_]+\}/.test(url)) {
+    throw new Error("probe URL is not committed — it resolves from the environment");
+  }
+  const probe = service.probe;
 
   let last;
   for (let i = 0; i < P.attemptsPerProbe; i++) {
@@ -211,7 +209,8 @@ async function main() {
          in a row would otherwise publish "Down" and open an incident for a
          service that is perfectly healthy. Record nothing, hold the day's
          counters, and make the run shout. */
-      console.error(`::error::[${service.id}] probe could not run: ${e.message}. ` +
+      console.error(`::error::[${service.id}] probe could not run: ${e.message} ` +
+        `(url=${service.probe.url}). ` +
         `Recording no result — this is a configuration fault, not an outage.`);
       rec.state = "unknown";
       rec.consecutiveFailures = 0;
@@ -256,8 +255,12 @@ async function main() {
     rec.days[today] = day;
     prune(rec.days);
 
+    /* A failure names the URL. "status=404" alone took production database
+       access to explain (#2176); the first question anyone asks is what was
+       actually being requested. Safe to print now that it is committed here,
+       and deliberately only on failure — a green line stays one line. */
     console.log(`[${service.id}] ${result.ok ? "ok" : "FAIL"} ` +
-      (result.ok ? "" : `status=${result.status} reason=${result.reason} `) +
+      (result.ok ? "" : `url=${service.probe.url} status=${result.status} reason=${result.reason} `) +
       (result.code ? `pgcode=${result.code} ` : "") +
       `attempts=${result.attempts} state=${rec.state} ` +
       `consecFail=${rec.consecutiveFailures} consecOk=${rec.consecutiveSuccesses}`);

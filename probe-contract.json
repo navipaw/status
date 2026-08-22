@@ -40,7 +40,7 @@
       "sublabel": "Saving and loading your NaviPaw data",
       "probe": {
         "method": "GET",
-        "url": "${PROBE_DATABASE_URL}",
+        "url": "https://siyhkghezsihnfumzuxe.supabase.co/rest/v1/rpc/status_probe",
         "sendCookies": false,
         "sendAuthorization": true,
         "secretHeaders": [

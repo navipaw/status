@@ -32,6 +32,11 @@ const RULES = [
   { name: "database error code", re: /\bSQLSTATE\b|\b5\d{4}\b:\s/ },
   { name: "internal hostname", re: /\b[a-z0-9-]+\.(internal|local|cluster\.local)\b/i },
   { name: "private IP address", re: /\b(10\.\d{1,3}|192\.168|172\.(1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}\b/ },
+  // Incident prose only, and deliberately still here now that probe-contract.json
+  // carries the ref as a committed literal. Naming the backend in a write-up of
+  // what broke is a different act from the contract recording what it measures:
+  // one is an aside in customer-facing copy, the other is the definition of the
+  // check. Do not "resolve the inconsistency" by deleting this.
   { name: "backend project ref in prose", re: /\b[a-z]{20}\.[a-z]+\.co\b/ },
   { name: "email address", re: /\b[\w.+-]+@[\w-]+\.[\w.]{2,}\b/ },
 ];

@@ -48,12 +48,17 @@ jobs:
       - name: Restore recorded history
         run: bash scripts/data-branch.sh restore
 
-      # Supplied rather than committed: the key is a credential, and the URL
-      # would name infrastructure this public repository has no reason to.
+      # Every probe URL is committed; only the key is supplied. That split used
+      # to run the other way, and the URL went with it — but a URL is what this
+      # page measures, not a thing it holds, and hiding it meant no diff in any
+      # repository could show what was actually being asked for. The key is a
+      # real credential and stays one.
+      - name: Check every probe URL is committed
+        run: node scripts/check-contract-urls.mjs
+
       - name: Probe services
         env:
           PROBE_DATABASE_KEY: ${{ secrets.PROBE_DATABASE_KEY }}
-          PROBE_DATABASE_URL: ${{ secrets.PROBE_DATABASE_URL }}
         run: node scripts/probe.mjs
 
       - name: Save recorded history
