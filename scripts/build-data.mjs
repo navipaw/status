@@ -21,7 +21,7 @@
  *
  * Run: node scripts/build-data.mjs
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, appendFileSync, existsSync, readdirSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -191,12 +191,36 @@ function main() {
     `incidents=${incidents.length} (open ${openIncidents.length}) ` +
     `lastCheckedAt=${snapshot.lastCheckedAt}`);
 
-  /* Surfaced, not enforced: a service that is down with nobody explaining why.
-     The workflow uses this to open an auto-incident stub. */
-  for (const s of services) {
-    if (s.state === "down" && !openIncidents.some((i) => i.affects.includes(s.id))) {
-      console.log(`::notice::${s.id} is down with no open incident describing it`);
-    }
+  /* A service that is down with nobody explaining why. Nothing opens an
+     incident automatically — incident.yml is workflow_dispatch only, and
+     incident copy is public, so a human writes it. What this must do instead is
+     be impossible to miss.
+
+     It was `::notice::`, which annotates a run that still finishes green. The
+     database probe was down for nine days underneath 275 consecutive green runs
+     before a human noticed the page rather than the log (#2176).
+
+     Two things happen now, and the split matters. `::error::` annotates the run
+     immediately — but an annotation does not change a job's conclusion, so on
+     its own it is a redder shade of green. The name is therefore also handed to
+     the workflow, which fails a job *after* the deploy has run. That ordering is
+     the point: this script must not exit non-zero itself, because the page it
+     just built is exactly what a reader needs during an outage, and a status
+     page that stops publishing when a service goes down has failed at its only
+     job. Publish first, then go red. */
+  const unexplained = services
+    .filter((s) => s.state === "down" && !openIncidents.some((i) => i.affects.includes(s.id)))
+    .map((s) => s.id);
+
+  for (const id of unexplained) {
+    console.error(`::error::${id} is down with no open incident describing it`);
+  }
+
+  /* Consumed by probe.yml's `alert` job. Written through GITHUB_OUTPUT rather
+     than parsed back out of the log, so a log-format change cannot silently
+     disarm the alarm. */
+  if (process.env.GITHUB_OUTPUT) {
+    appendFileSync(process.env.GITHUB_OUTPUT, `unexplained_down=${unexplained.join(" ")}\n`);
   }
 }
 

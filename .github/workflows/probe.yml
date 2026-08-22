@@ -30,6 +30,10 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
+    outputs:
+      # Services reading Down with no incident explaining them. Raised by the
+      # `alert` job below, after the page has published.
+      unexplained_down: ${{ steps.build.outputs.unexplained_down }}
     steps:
       - uses: actions/checkout@v4
 
@@ -61,6 +65,7 @@ jobs:
       # status.json is a build output, never committed: generating it here means
       # the published page and its inputs cannot drift apart.
       - name: Build published snapshot
+        id: build
         run: node scripts/build-data.mjs
 
       - uses: actions/configure-pages@v5
@@ -90,3 +95,36 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Fails the run when a service is Down and no incident explains it.
+  #
+  # Deliberately a separate job, and deliberately after `deploy`. The probe job
+  # must finish green even during an outage, because the page it publishes is
+  # what a reader needs most at exactly that moment — failing earlier would take
+  # the status page down alongside the service it reports on. So the page ships
+  # first and the run goes red afterwards.
+  #
+  # Why red at all: an `::error::` annotation leaves the run's conclusion green,
+  # and a green run is one nobody opens. The database probe failed for nine days
+  # under 275 consecutive green runs (#2176). A red run in the Actions list is
+  # the signal that was missing.
+  alert:
+    needs: [probe, deploy]
+    if: needs.probe.outputs.unexplained_down != ''
+    runs-on: ubuntu-latest
+    steps:
+      # Through env, not interpolated into the shell — the value crosses a job
+      # boundary as data and has no business being parsed as script.
+      - name: Raise unexplained outage
+        env:
+          DOWN: ${{ needs.probe.outputs.unexplained_down }}
+        run: |
+          echo "::error::Down with no open incident: $DOWN"
+          cat >> "$GITHUB_STEP_SUMMARY" <<EOF
+          ### Down with no open incident: \`$DOWN\`
+
+          The page published normally — this job fails afterwards so the run is
+          visible. Either post an incident with the **Post incident update**
+          workflow, or fix the probe.
+          EOF
+          exit 1
