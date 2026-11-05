@@ -3,87 +3,9 @@
   "services": {
     "web": {
       "consecutiveFailures": 0,
-      "consecutiveSuccesses": 1008,
+      "consecutiveSuccesses": 1009,
       "state": "operational",
       "days": {
-        "2026-07-25": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-26": {
-          "recordedProbes": 15,
-          "successfulProbes": 15,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-27": {
-          "recordedProbes": 11,
-          "successfulProbes": 11,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-28": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-29": {
-          "recordedProbes": 14,
-          "successfulProbes": 14,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-30": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-31": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-01": {
-          "recordedProbes": 16,
-          "successfulProbes": 16,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-02": {
-          "recordedProbes": 15,
-          "successfulProbes": 15,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-03": {
-          "recordedProbes": 11,
-          "successfulProbes": 11,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-04": {
-          "recordedProbes": 11,
-          "successfulProbes": 11,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-05": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-06": {
-          "recordedProbes": 6,
-          "successfulProbes": 6,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
         "2026-08-07": {
           "recordedProbes": 22,
           "successfulProbes": 22,
@@ -449,92 +371,20 @@
           "successfulProbes": 3,
           "maxConsecutiveFailures": 0,
           "runningFailures": 0
+        },
+        "2026-11-05": {
+          "recordedProbes": 1,
+          "successfulProbes": 1,
+          "maxConsecutiveFailures": 0,
+          "runningFailures": 0
         }
       }
     },
     "database": {
       "consecutiveFailures": 0,
-      "consecutiveSuccesses": 389,
+      "consecutiveSuccesses": 390,
       "state": "operational",
       "days": {
-        "2026-07-25": {
-          "recordedProbes": 9,
-          "successfulProbes": 8,
-          "maxConsecutiveFailures": 1,
-          "runningFailures": 0
-        },
-        "2026-07-26": {
-          "recordedProbes": 15,
-          "successfulProbes": 15,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-27": {
-          "recordedProbes": 11,
-          "successfulProbes": 11,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-28": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-29": {
-          "recordedProbes": 14,
-          "successfulProbes": 14,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-30": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-07-31": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-01": {
-          "recordedProbes": 16,
-          "successfulProbes": 16,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-02": {
-          "recordedProbes": 15,
-          "successfulProbes": 15,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-03": {
-          "recordedProbes": 11,
-          "successfulProbes": 11,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-04": {
-          "recordedProbes": 11,
-          "successfulProbes": 11,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-05": {
-          "recordedProbes": 12,
-          "successfulProbes": 12,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
-        "2026-08-06": {
-          "recordedProbes": 6,
-          "successfulProbes": 6,
-          "maxConsecutiveFailures": 0,
-          "runningFailures": 0
-        },
         "2026-08-07": {
           "recordedProbes": 22,
           "successfulProbes": 22,
@@ -900,9 +750,15 @@
           "successfulProbes": 3,
           "maxConsecutiveFailures": 0,
           "runningFailures": 0
+        },
+        "2026-11-05": {
+          "recordedProbes": 1,
+          "successfulProbes": 1,
+          "maxConsecutiveFailures": 0,
+          "runningFailures": 0
         }
       }
     }
   },
-  "lastCheckedAt": "2026-10-06T15:27:38.787Z"
+  "lastCheckedAt": "2026-11-05T15:28:02.701Z"
 }
